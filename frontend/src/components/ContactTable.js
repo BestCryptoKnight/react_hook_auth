@@ -22,10 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactTable = ({ handleClickOpen, setCurrentId }) => {
+const ContactTable = ({ handleClickOpen, setCurrentId, userInfo }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const contacts = useSelector((state) => state.contacts);
   console.log(contacts);
 
@@ -77,23 +76,25 @@ const ContactTable = ({ handleClickOpen, setCurrentId }) => {
               render: (rowData) =>
                 rowData && (
                   <>
-                    <IconButton
+                    {userInfo && (<IconButton
                       color='primary'
                       onClick={() => {
                         setCurrentId(rowData._id);
                         handleClickOpen();
                       }}
+                      disabled={userInfo.firstName === "John" ? false : true}
                     >
                       <EditIcon />
-                    </IconButton>
-                    <IconButton
+                    </IconButton>)}
+                    {userInfo &&(<IconButton
                       color='secondary'
                       onClick={() => {
                         delContact(rowData._id);
                       }}
+                      disabled = {userInfo.firstName === "John" ? false : true}
                     >
                       <DeleteIcon />
-                    </IconButton>
+                    </IconButton>)}
                   </>
                 ),
             },
@@ -102,8 +103,12 @@ const ContactTable = ({ handleClickOpen, setCurrentId }) => {
           actions={[
             {
               tooltip: 'Remove All Selected Contacts',
+              disabled: false,
               icon: 'delete',
-              onClick: (evt, data) => delContacts(data.map((a) => a._id)),
+              onClick: (evt, data) => {
+                console.log(data)
+                delContacts(data.map((a) => a._id))
+              },
             },
           ]}
           options={{

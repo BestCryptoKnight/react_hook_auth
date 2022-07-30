@@ -35,10 +35,11 @@ const Contact = () => {
         setCurrentId={setCurrentId}
       />
       <ContactTable
-        open={open}
         handleClose={handleClose}
+        userInfo={userInfo}
         handleClickOpen={handleClickOpen}
         setCurrentId={setCurrentId}
+
       />
     </div>
   );
