@@ -1,0 +1,69 @@
+{
+  "name": "jspdf-autotable",
+  "version": "3.5.9",
+  "description": "Generate pdf tables with javascript (jsPDF plugin)",
+  "main": "dist/jspdf.plugin.autotable.js",
+  "types": "dist/index",
+  "files": [
+    "dist/*"
+  ],
+  "directories": {
+    "example": "examples"
+  },
+  "peerDependencies": {
+    "jspdf": "^2.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.0.2",
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@typescript-eslint/parser": "^3.9.0",
+    "dts-bundle-generator": "^5.3.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jsdom": "^16.4.0",
+    "jspdf": "^2.0.0",
+    "mocha": "^8.1.1",
+    "npm-check-updates": "^7.1.0",
+    "prettier": "2.0.5",
+    "ts-loader": "^8.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server -d --open",
+    "start-external": "webpack-dev-server -d --open --host 0.0.0.0",
+    "build": "webpack --mode=production && webpack --mode=production --minified && npm run types",
+    "lint": "eslint . --ext .ts",
+    "test": "mocha -r ts-node/register test/test*.ts",
+    "format": "prettier --write src",
+    "version": "npm test && npm run build && git add -A dist",
+    "hosting": "git push origin master:gh-pages -f",
+    "deploy": "git push --follow-tags && npm run hosting && npm publish",
+    "update-libs": "cd examples/nodejs && ncu -u && npm i && cd ../typescript && ncu -u && npm i && cd ../webpack && ncu -u && npm i",
+    "types": "dts-bundle-generator src/main.ts -o ./dist/index.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonbengtsson/jsPDF-AutoTable.git"
+  },
+  "keywords": [
+    "pdf",
+    "table",
+    "jspdf"
+  ],
+  "author": "Simon Bengtsson <dev@simonbengtsson.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simonbengtsson/jsPDF-AutoTable/issues"
+  },
+  "homepage": "https://simonbengtsson.github.io/jsPDF-AutoTable",
+  "dependencies": {}
+}
