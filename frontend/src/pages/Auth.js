@@ -236,7 +236,7 @@ const Auth = ({ history }) => {
 
             {/* Google Login Button */}
             <GoogleLogin
-              clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+              clientId='582207110485-kvscjbk3jps6vd3eupd6n8il1fba5ra8.apps.googleusercontent.com'
               render={(renderProps) => (
                 <Button
                   className={classes.googleButton}
